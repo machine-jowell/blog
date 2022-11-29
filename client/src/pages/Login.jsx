@@ -19,11 +19,13 @@ const Login = () => {
     
     const submitHandler = async (event) => {
       event.preventDefault();
+
+      if (inputs.username.trim().length === 0 || inputs.password.trim().length === 0) return setError("Username / Password should not be empty!");
+      
+      // try-catch to login with inputs
       try {
         await login(inputs);
         navigate("/");
-        
-        
       } catch (err) {
         setError(err.response.data);
       }
@@ -34,8 +36,8 @@ const Login = () => {
         <div className="auth">
             <h1>Login</h1>
             <form>
-                <input type="text" placeholder="username" name="username" onChange={changeHandler} />
-                <input type="password" placeholder="password" name="password" onChange={changeHandler} />
+                <input type="text" placeholder="username" name="username" required onChange={changeHandler} />
+                <input type="password" placeholder="password" name="password" required onChange={changeHandler} />
                 <button onClick={submitHandler}>Login</button>
                 {error && <p>{error}</p>}
                 <span>Don't have an account yet? <Link to="/register">Register now!</Link></span>

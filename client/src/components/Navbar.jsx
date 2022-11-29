@@ -10,7 +10,6 @@ const Navbar = () => {
     const logoutHandler = () => {
         logout();
         navigate("/");
-
     };
 
     return (
@@ -21,10 +20,10 @@ const Navbar = () => {
                 </Link>
                 <div className="links">
                     <Link className="link" to="aboutme">
-                        <h6>About me</h6>
+                        <span>About me</span>
                     </Link>
                     <span>{currentUser?.username}</span>
-                    {currentUser ? <span onClick={logoutHandler}>Logout</span> : <Link className="link" to="/login">Login</Link>}
+                    {currentUser ? <span onClick={logoutHandler}>Logout</span> : <Link className="link" to="/login">Sign In</Link>}
                     <span className="write">
                         <Link className="write" to="/write">Write</Link>
                     </span>
